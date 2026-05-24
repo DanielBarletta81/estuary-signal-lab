@@ -20,7 +20,17 @@ const scoreColor =
       <p className="eyebrow">Habitat Health</p>
       <h2>Current Site Score</h2>
 
-      <div className="score-number">{score ?? "—"}</div>
+      <div className="score-number" style={{
+  color: scoreColor,
+  textShadow:
+    stress === "healthy"
+      ? "0 0 20px var(--healthy-glow)"
+      : stress === "moderate"
+      ? "0 0 20px var(--moderate-glow)"
+      : stress === "severe"
+      ? "0 0 20px var(--severe-glow)"
+      : "none"
+}}>{score ?? "—"}</div>
 
       <div className={`stress-badge ${stress}`}>
         {stress === "waiting" ? "Waiting for data" : stress}

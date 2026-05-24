@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { TimePlayback } from "./components/TimePlayback";
 import { useEstuaryStream } from "./hooks/useEstuaryStream";
 import { Hero } from "./components/Hero";
 import { HabitatScore } from "./components/HabitatScore";
@@ -10,20 +12,35 @@ import "./styles.css";
 
 export default function App() {
   const { status, latest, events } = useEstuaryStream();
+const [isPlaybackMode, setIsPlaybackMode] = useState(false);
+const [playbackIndex, setPlaybackIndex] = useState(0);
+
+const playbackEvent = events[playbackIndex];
+
+const displayedLatest = isPlaybackMode ? playbackEvent : latest;
+const displayedEvents = isPlaybackMode ? events.slice(playbackIndex) : events;
 
   return (
     <main className="app-shell">
-      <Hero status={status} />
+      <Hero connectionStatus={status} />
 
-      <section className="dashboard-grid">
-        <HabitatScore event={latest} />
-        <InsightPanel event={latest} />
-      </section>
+      <TimePlayback
+        events={events}
+        isPlaybackMode={isPlaybackMode}
+        setIsPlaybackMode={setIsPlaybackMode}
+        playbackIndex={playbackIndex}
+        setPlaybackIndex={setPlaybackIndex}
+      />  
+     <HabitatScore event={displayedLatest} />
+<InsightPanel event={displayedLatest} />
 
-      <SignalCards event={latest} />
-      <MultiSitePanel events={events} />
-      <EstuaryMap events={events} />
-      <TrendChart events={events} />
+<MultiSitePanel events={displayedEvents} />
+
+<EstuaryMap events={displayedEvents} />
+
+<SignalCards event={displayedLatest} />
+
+<TrendChart events={displayedEvents} />
     </main>
   );
 }
