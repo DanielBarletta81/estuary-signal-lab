@@ -1,0 +1,32 @@
+export const sites = [
+  {
+    siteId: "PROVIDENCE_RIVER",
+    siteName: "Providence River",
+    latitude: 41.807,
+    longitude: -71.402,
+    region: "upper bay",
+    profile: "urban upper-bay station",
+    stressBias: 1.25,
+    salinityBias: -4,
+  },
+  {
+    siteId: "CONIMICUT_POINT",
+    siteName: "Conimicut Point",
+    latitude: 41.716,
+    longitude: -71.344,
+    region: "mid bay",
+    profile: "transitional mid-bay station",
+    stressBias: 0.7,
+    salinityBias: 0,
+  },
+  {
+    siteId: "DUTCH_ISLAND",
+    siteName: "Dutch Island, Jamestown",
+    latitude: 41.496,
+    longitude: -71.402,
+    region: "lower bay",
+    profile: "high-salinity lower-bay station",
+    stressBias: 0.25,
+    salinityBias: 4,
+  },
+];
